@@ -5,16 +5,13 @@ using System.IO;
 
 namespace Day01 {
     class Program {
-
-        //Part 1:
         static void Main() {
             int previous;
             int current;
             int num_occurences = 0;
-
+            //Part 1:
             using(StreamReader file = new StreamReader("input.txt")) {
-                string tmp = file.ReadLine();
-                previous = Int32.Parse(tmp);
+                previous = Int32.Parse(file.ReadLine());
                 while(!file.EndOfStream) {
                     current = Int32.Parse(file.ReadLine());
                     if(current > previous) {
