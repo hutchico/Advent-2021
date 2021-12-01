@@ -5,14 +5,14 @@ using System.IO;
 
 namespace Day01 {
     class Program {
-        /*
+
         //Part 1:
         static void Main() {
             int previous;
             int current;
             int num_occurences = 0;
 
-            using(StreamReader file = new StreamReader("input.txt")){
+            using(StreamReader file = new StreamReader("input.txt")) {
                 string tmp = file.ReadLine();
                 previous = Int32.Parse(tmp);
                 while(!file.EndOfStream) {
@@ -23,15 +23,13 @@ namespace Day01 {
                     previous = current;
                 }
             }
-            Console.WriteLine("Number of increases: " + num_occurences);
-        }
-        */
+            Console.WriteLine("Part 1 answer: " + num_occurences);
 
-        //Part 2:
-        static void Main() {
+            //Part 2:
+
             int previous_window = 0;
             int current_window;
-            int num_occurences = 0;
+            num_occurences = 0;
 
             using(StreamReader file = new StreamReader("input.txt")) {
                 Window tracker = new Window(Int32.Parse(file.ReadLine()),Int32.Parse(file.ReadLine()),Int32.Parse(file.ReadLine()));
@@ -45,10 +43,10 @@ namespace Day01 {
                     previous_window = current_window;
                 }
             }
-            Console.WriteLine("Number of increases: " + num_occurences);
+            Console.WriteLine("Part 2 answer: " + num_occurences);
         }
     }
-    
+}
     class Window{
         public Window(int in1, int in2, int in3) { 
             meas0 = in1; meas1 = in2; meas2 = in3;
@@ -110,4 +108,4 @@ namespace Day01 {
         private int meas2;
     }
 
-}
+
