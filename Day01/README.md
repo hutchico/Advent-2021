@@ -53,13 +53,13 @@ Instead, consider sums of a three-measurement sliding window. Again considering 
 199 A      
 200 A B    
 208 A B C  
-210    B C D
-200 E    C D
-207 E F    D
+210   B C D
+200 E   C D
+207 E F   D
 240 E F G  
-269    F G H
-260       G H
-263           H
+269   F G H
+260     G H
+263       H
 </pre>
 
 Start by comparing the first and second three-measurement windows. The measurements in the first window are marked A (199, 200, 208); their sum is 199 + 200 + 208 = 607. The second window is marked B (200, 208, 210); its sum is 618. The sum of measurements in the second window is larger than the sum of the first, so this first comparison increased.
