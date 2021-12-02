@@ -20,18 +20,19 @@ namespace Day02 {
                 }
             }
             for(int i = 0; i < inputs.Count; i++) {
+                int param = Int32.Parse(inputs[i][1]);
                 switch(inputs[i][0]) {
                     case "forward":
-                        horiz_pos += Int32.Parse(inputs[i][1]);
-                        depth2 += aim * Int32.Parse(inputs[i][1]);
+                        horiz_pos += param;
+                        depth2 += aim * param;
                         break;
                     case "up":
-                        depth1 -= Int32.Parse(inputs[i][1]);
-                        aim -= Int32.Parse(inputs[i][1]);
+                        depth1 -= param;
+                        aim -= param;
                         break;
                     case "down":
-                        depth1 += Int32.Parse(inputs[i][1]);
-                        aim += Int32.Parse(inputs[i][1]);
+                        depth1 += param;
+                        aim += param;
                         break;
                 }
             }
