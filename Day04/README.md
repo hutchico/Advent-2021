@@ -30,27 +30,16 @@ The submarine has a bingo subsystem to help passengers (currently, you and the g
 </pre>
 After the first five numbers are drawn (7, 4, 9, 5, and 11), there are no winners, but the boards are marked as follows (shown here adjacent to each other to save space):
 
-22 13 17 **11**  0         3 15  0  2 22        14 21 17 24  **4**
- 8  2 23  **4** 24         **9** 18 13 17  **5**        10 16 15  **9** 19
-21  9 14 16  **7**        19  8  **7** 25 23        18  8 23 26 20
- 6 10  3 18  **5**        20 **11** 10 24  **4**        22 **11** 13  6  **5**
- 1 12 20 15 19        14 21 16 12  6         2  0 12  3  **7**
+![bng1](https://user-images.githubusercontent.com/22420744/144724502-ead25cf8-d69a-4632-9e07-9674b8e88344.png)
 
 After the next six numbers are drawn (17, 23, 2, 0, 14, and 21), there are still no winners:
 
-22 13 **17** **11**  **0**         3 15  **0**  **2** 22        **14** **21** **17** 24  **4**
- 8  **2** **23**  **4** 24         **9** 18 13 **17**  **5**        10 16 15  **9** 19
-**21**  9 **14** 16  **7**        19  8  **7** 25 **23**        18  8 **23** 26 20
- 6 10  3 18  **5**        20 **11** 10 24  **4**        22 **11** 13  6  **5**
- 1 12 20 15 19        **14** 21 16 12  6         **2**  **0** 12  3  **7**
+![bng2](https://user-images.githubusercontent.com/22420744/144724506-df109238-84ab-4a96-b656-146a8628448c.png)
+
 
 Finally, 24 is drawn:
 
-22 13 **17** **11**  **0**         3 15  **0**  **2** 22        **14** **21** **17** **24**  **4**
- 8  **2** **23**  **4** 24         **9** 18 13 **17**  **5**        10 16 15  **9** 19
-**21**  9 **14** 16  **7**        19  8  **7** 25 **23**        18  8 **23** 26 20
- 6 10  3 18  **5**        20 **11** 10 24  **4**        22 **11** 13  6  **5**
- 1 12 20 15 19        **14** 21 16 12  6         **2**  **0** 12  3  **7**
+![bng3](https://user-images.githubusercontent.com/22420744/144724507-554f86aa-c21a-42cf-864b-723964119322.png)
 
 At this point, the third board wins because it has at least one complete row or column of marked numbers (in this case, the entire top row is marked: 14 21 17 24 4).
 
