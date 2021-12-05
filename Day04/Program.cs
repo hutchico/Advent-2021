@@ -87,33 +87,33 @@ namespace Day04 {
         public bool checkWin(int x, int y) { //Scan the board for victory conditions around the number we just marked off
             //4 possible cases: horiz, vert
             // diagUp, diagDown only if x == y
-            int HCount = 0;
-            int Vcount = 0;
-            int DUcount = 0;
-            int DDcount = 0;
-            for(int i = 0; i < 5; i++) { //across
+            int HCount = 0; //horizontal numbers
+            int VCount = 0; //vertical numbers
+
+            for(int i = 0; i < 5; i++) { //further improvements: include short-circuit if loop encounters a 0 at any position
                 HCount += boardState[i][y];
-                Vcount += boardState[x][i];
+                VCount += boardState[x][i];
             }
-            if(HCount == 5 || Vcount == 5)
+            if(HCount == 5 || VCount == 5)
                 return true;
 
             if(x != y || x + y != 4) //check if number is in one of the valid diagonals
                 return false;
 
+            HCount = VCount = 0;
             if(y <= 2) { 
                 for(int i = 0; i < 5; i++) {
-                    DDcount += boardState[i][i];
+                    HCount += boardState[i][i];
                 }
-                if(DDcount == 5)
+                if(HCount == 5)
                     return true;
             }
 
             else if(y >= 2) { //diag up, catches y == x == 3
                 for(int i = 0; i < 5; i++) {
-                    DUcount += boardState[i][4 - i];
+                    VCount += boardState[i][4 - i];
                 }
-                if(DUcount == 5)
+                if(VCount == 5)
                     return true;
             }
             return false;
@@ -122,5 +122,4 @@ namespace Day04 {
         private List<List<int>> boardState;
         private List<List<int>> boardContents;
     }
-
 }
