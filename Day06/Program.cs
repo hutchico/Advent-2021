@@ -43,14 +43,14 @@ namespace Day06 {
                 }
             }
 
-            for(int i = 0; i < 256; i++) { //Part 1: 80 day span, part 2: 256 day span
-                //age_fish(ref school);
-                age_fish_2(ref li);
-                //Console.WriteLine("Day " + i);
-                //print_school(school,i);
+            for(int i = 0; i < 80; i++) { //Part 1: 80 day span, part 2: 256 day span
+                age_fish(ref school);
             }
             Console.WriteLine("Number of fish after 80 days: " + school.Count);
-            Console.WriteLine("Number of fish after 80 days: " + sum_school(li));
+            for(int i = 0; i < 256; i++) {
+                age_fish_2(ref li);
+            }
+            Console.WriteLine("Number of fish after 256 days: " + sum_school(li));
         }
         static void age_fish(ref List<int> school) {
             int base_size = school.Count;
@@ -63,7 +63,7 @@ namespace Day06 {
             }
         }
 
-        static void age_fish_2(ref tracker li) { //shuffle every fish count down one indice and tack on
+        static void age_fish_2(ref tracker li) { //shuffle every fish count down one indice and tack on the new ones at the end
             Int64 temp;
             Int64 temp2;
             temp = li.day7;
