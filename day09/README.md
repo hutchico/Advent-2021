@@ -6,6 +6,7 @@ If you can model how the smoke flows through the caves, you might be able to avo
 
 Smoke flows to the lowest point of the area it's in. For example, consider the following heightmap:
 
+![aoc9-1](https://user-images.githubusercontent.com/22420744/145483945-8e5a203a-724d-47f5-a1ce-04ab9043fa86.png)
 
 
 Each number corresponds to the height of a particular location, where 9 is the highest and 0 is the lowest a location can be.
@@ -29,21 +30,25 @@ The size of a basin is the number of locations within the basin, including the l
 
 The top-left basin, size 3:
 
+![aoc9-2](https://user-images.githubusercontent.com/22420744/145483963-11032592-5c48-4cbb-9ffc-c7fcf1ac6c89.png)
 
 
 
 The top-right basin, size 9:
 
+![aoc9-3](https://user-images.githubusercontent.com/22420744/145483968-315ef22b-8a6c-4748-a4ac-0dc1bdec753d.png)
 
 
 
 The middle basin, size 14:
 
 
+![aoc9-4](https://user-images.githubusercontent.com/22420744/145483973-9b4e9eb7-5a9c-4ed9-a5a5-231186dec5e1.png)
 
 
 The bottom-right basin, size 9:
 
+![aoc9-5](https://user-images.githubusercontent.com/22420744/145483977-d9453b08-1262-47d1-8e17-9f6c8b20f460.png)
 
 
 Find the three largest basins and multiply their sizes together. In the above example, this is 9 * 14 * 9 = 1134.
