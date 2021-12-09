@@ -56,7 +56,6 @@ namespace Day08 {
 
             for(int i = 0; i < digits.Count; i++) {
                 //the gimmes are already assigned per calling Publish in part 1, 1 4 7 8 already known
-                List<string> results = new List<string>();
                 string intermediate = "";
                 //assign mapping a: use lengths 3 and 2, compare
                 digits[i].segment_Map['a'] = find_dif(digits[i].seven,digits[i].one)[0];
@@ -68,8 +67,7 @@ namespace Day08 {
                 intermediate = find_common(digits[i].seven,intermediate);
                 digits[i].segment_Map['c'] = intermediate[0];
                 //assign mapping f: concat a and c, compare to 7
-                intermediate = digits[i].segment_Map['c'].ToString();
-                intermediate += digits[i].segment_Map['a'].ToString();
+                intermediate = digits[i].segment_Map['c'].ToString() + digits[i].segment_Map['a'].ToString();
                 digits[i].segment_Map['f'] = find_dif(intermediate,digits[i].seven)[0];
 
                 //find digit 5: look at 2 3 5 for whatever doesn't have segment map for c in it
@@ -165,22 +163,6 @@ namespace Day08 {
             return result;
         }
 
-        //determine if two sets of strings are equivalent
-        public static bool find_equivalence(string a, string b) {
-            List<char> str_a = new List<char>();
-            List<char> str_b = new List<char>();
-            char[] temp = a.ToCharArray();
-            str_a = temp.ToList();
-            temp = b.ToCharArray();
-            str_b = temp.ToList();
-            str_a.Sort();
-            str_b.Sort();
-            if(str_a.Equals(str_b))
-                return true;
-            else
-                return false;
-        }
-
         //remove duplicate values from a string
         public static string strip_dupes(string input) {
             string result = "";
@@ -201,10 +183,6 @@ namespace Day08 {
             temp.RemoveAt(ind);
             result = new string(temp.ToArray());
             return result;
-        }
-
-        public static string build_result(List<string> input) {
-            return "*";
         }
 
         public class digit {
@@ -250,7 +228,6 @@ namespace Day08 {
                     }
                 }
             }
-
             public void convert() {
                 string raw = "";
                 make_nice();
