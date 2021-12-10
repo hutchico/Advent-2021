@@ -1,13 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
+using System.IO;
 
 namespace Day09 {
     class Program {
         static void Main() {
-            int[,] map = new int[100,100]; 
+            int[,] map = new int[100,100];
             int[,] checke = new int[100,100]; //fun fact, "checked" is a namespace collision
             int risk_tally = 0;
             List<KeyValuePair<int,int>> lowpoints = new List<KeyValuePair<int,int>>(); //needed for part 2
@@ -24,9 +22,9 @@ namespace Day09 {
                     }
                 }
             }
-            
+
             //part 1
-            
+
             //original design was a convoluted solution built around rolling a marble down a hill.
             // that was dumb, so bruteforce it is.
             for(int x = 0; x < map.GetLength(0); x++) {
@@ -79,7 +77,7 @@ namespace Day09 {
 
         }
 
-        static int find_basins(int[,] map, ref int[,] checke, int start_x, int start_y) {
+        static int find_basins(int[,] map,ref int[,] checke,int start_x,int start_y) {
             if(checke[start_x,start_y] > 2) { //base case, in part of basin already mapped by another branch
                 return 0;
             }
