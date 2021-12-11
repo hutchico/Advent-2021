@@ -54,7 +54,7 @@ After step 2:
 An octopus is 0 if it flashed during the given step.
 
 Here is how the larger example above progresses:
-```
+
 Before any steps:
 ```
 5483143223
