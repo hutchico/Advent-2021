@@ -199,7 +199,7 @@ After step 10:
 0032240000
 ```
 After step 10, there have been a total of 204 flashes. Fast forwarding, here is the same configuration every 10 steps:
-```
+
 After step 20:
 ```
 3936556452
