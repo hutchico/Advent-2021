@@ -11,7 +11,6 @@ namespace Day12 {
             List<Node> nodes = new List<Node>();
             Dictionary<string,int> indices = new Dictionary<string,int>(); //Map a node name to its position in nodes
             List<string> unique_paths = new List<string>(); //track each path produced with this?
-            //List<string> visited = new List<string>();
             Dictionary<string,int> visited = new Dictionary<string,int>();
             using(StreamReader file = new StreamReader("input.txt")) {
                 while(!file.EndOfStream) {
@@ -23,24 +22,21 @@ namespace Day12 {
                     nodes_raw.Add(new KeyValuePair<string,string>(tk[0],tk[1]));
                 }
             }
-            //nodes_raw.Sort((x,y) => x.Key.CompareTo(y.Key));
-            nodes_toMake.Sort();
             for(int i = 0; i < nodes_toMake.Count; i++) { //construct N nodes, add to node list
                 nodes.Add(new Node(nodes_toMake[i]));
                 indices[nodes_toMake[i]] = i;
             }
             for(int i = 0; i < nodes_raw.Count; i++) {
-                int noderef1 = indices[nodes_raw[i].Key];
+                int noderef1 = indices[nodes_raw[i].Key]; //make each node point to its partner
                 int noderef2 = indices[nodes_raw[i].Value];
                 nodes[noderef1].add_node(nodes[noderef2]);
-                nodes[noderef2].add_node(nodes[noderef1]);
+                nodes[noderef2].add_node(nodes[noderef1]); 
             }
 
-            visited["start"] = 1; //part 1: 1, part 2: 2
+            
             for(int i = 0; i < nodes[indices["start"]].get_connection_size(); i++) {
                 string path = "start,";
-                //unique_paths.AddRange(find_path(nodes[indices["start"]].connections[i],ref visited,path));
-                unique_paths = unique_paths.Union(find_path(nodes[indices["start"]].connections[i],ref visited,path)).ToList();
+                unique_paths = unique_paths.Union(find_path(nodes[indices["start"]].connections[i],ref visited,path,false)).ToList();
             }
 
 
@@ -48,25 +44,31 @@ namespace Day12 {
 
         }
 
-        static List<string> find_path(Node current, ref Dictionary<string,int> visited, string path) {
+        static List<string> find_path(Node current, ref Dictionary<string,int> visited, string path, bool twice) {
             List<string> paths = new List<string>();
             Dictionary<string,int> visitation = new Dictionary<string,int>(visited);
-            if(current.get_type() == Type.Small && visitation.ContainsKey(current.get_name()) && visited[current.get_name()] > 0) //part 1: > 0
+            bool numSmall = twice;
+            if(current.get_name() == "start")
                 return paths;
+            //part 2: change twice comparison from false to true
+            if(current.get_type() == Type.Small && visitation.ContainsKey(current.get_name()) && twice == false && visited[current.get_name()] >= 1) //part 1: > 0
+                return paths;
+
             if(current.get_name() == "end") {
                 path += "end";
                 paths.Add(path);
                 return paths;
             }
-            //visitation.Add(current.get_name());
             if(visitation.ContainsKey(current.get_name()))
                 visitation[current.get_name()]++;
             else
                 visitation[current.get_name()] = 1;
+            if(current.get_type() == Type.Small && visitation[current.get_name()] >= 2)
+                numSmall = true;
             path += current.get_name() + ',';
             for(int i = 0; i < current.get_connection_size(); i++) {
-                //paths.AddRange(find_path(current.connections[i],ref visitation,path));
-                paths = paths.Union(find_path(current.connections[i],ref visitation,path)).ToList();
+                //part 2: change "false" to "numSmall"
+                paths = paths.Union(find_path(current.connections[i],ref visitation,path,false)).ToList();
             }
             return paths;
         }
@@ -78,7 +80,6 @@ namespace Day12 {
 
         public Node(string name) {
             this.name = name;
-            visited = false;
             connections = new List<Node>();
             type = name[0] < 95 ? Type.Large : Type.Small; //technically 97 but irrelevant to structure
         }
@@ -90,12 +91,9 @@ namespace Day12 {
         }
 
         public string get_name() { return name; }
-        public List<Node> get_connections() { return connections; }
         public int get_connection_size() { return connections.Count; }
-        public bool get_visited() { return visited; }
         public Type get_type() { return type; }
 
-        private bool visited; //record if pathfinding algorithm has already visited this node once (if small)
         private Type type;
         public List<Node> connections;
         private string name;
