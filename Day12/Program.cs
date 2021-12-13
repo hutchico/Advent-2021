@@ -9,8 +9,8 @@ namespace Day12 {
             List<KeyValuePair<string,string>> nodes_raw = new List<KeyValuePair<string,string>>();
             List<string> nodes_toMake = new List<string>();
             List<Node> nodes = new List<Node>();
-            Dictionary<string,int> indices = new Dictionary<string,int>(); //Map a node name to its position in nodes
             List<string> unique_paths = new List<string>(); //track each path produced with this?
+            Dictionary<string,int> indices = new Dictionary<string,int>(); //Map a node name to its position in nodes
             Dictionary<string,int> visited = new Dictionary<string,int>();
             using(StreamReader file = new StreamReader("input.txt")) {
                 while(!file.EndOfStream) {
@@ -27,14 +27,14 @@ namespace Day12 {
                 indices[nodes_toMake[i]] = i;
             }
             for(int i = 0; i < nodes_raw.Count; i++) {
-                int noderef1 = indices[nodes_raw[i].Key]; //make each node point to its partner
-                int noderef2 = indices[nodes_raw[i].Value];
-                nodes[noderef1].add_node(nodes[noderef2]);
-                nodes[noderef2].add_node(nodes[noderef1]); 
+                int node_key = indices[nodes_raw[i].Key]; //make each node point to its partner
+                int node_value = indices[nodes_raw[i].Value];
+                nodes[node_key].add_node(nodes[node_value]);
+                nodes[node_value].add_node(nodes[node_key]); 
             }
 
             
-            for(int i = 0; i < nodes[indices["start"]].get_connection_size(); i++) {
+            for(int i = 0; i < nodes[indices["start"]].connections.Count; i++) {
                 string path = "start,";
                 unique_paths = unique_paths.Union(find_path(nodes[indices["start"]].connections[i],ref visited,path,false)).ToList();
             }
@@ -66,7 +66,7 @@ namespace Day12 {
             if(current.get_type() == Type.Small && visitation[current.get_name()] >= 2)
                 numSmall = true;
             path += current.get_name() + ',';
-            for(int i = 0; i < current.get_connection_size(); i++) {
+            for(int i = 0; i < current.connections.Count; i++) {
                 //part 2: change "false" to "numSmall"
                 paths = paths.Union(find_path(current.connections[i],ref visitation,path,false)).ToList();
             }
@@ -91,7 +91,6 @@ namespace Day12 {
         }
 
         public string get_name() { return name; }
-        public int get_connection_size() { return connections.Count; }
         public Type get_type() { return type; }
 
         private Type type;
