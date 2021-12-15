@@ -19,7 +19,8 @@ You start in the top left position, your destination is the bottom right positio
 
 Your goal is to find a path with the lowest total risk. In this example, a path with the lowest total risk is highlighted here:
 
-[image here]
+![151](https://user-images.githubusercontent.com/22420744/146265050-c089b639-7dc3-4cc6-94ed-0b1887c45c9d.png)
+
 
 The total risk of this path is 40 (the starting position is never entered, so its risk is not counted).
 
@@ -41,11 +42,13 @@ Each single digit above corresponds to the example position with a value of 8 on
 
 Here is the full five-times-as-large version of the first example above, with the original map in the top left corner highlighted:
 
-[image here]
+![152](https://user-images.githubusercontent.com/22420744/146265061-9cfcb9ad-798c-4a86-8022-167c6c866f50.png)
+
 
 Equipped with the full map, you can now find a path from the top left corner to the bottom right corner with the lowest total risk:
 
-[image here]
+![153](https://user-images.githubusercontent.com/22420744/146265065-fdaee8cb-482b-4ce1-aad5-1ca9b2f68b25.png)
+
 
 The total risk of this path is 315 (the starting position is still never entered, so its risk is not counted).
 
