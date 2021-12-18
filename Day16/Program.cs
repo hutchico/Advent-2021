@@ -179,8 +179,7 @@ namespace Day16 {
                 case "011":
                     return work.Max();
                 case "100":
-                    num = Convert.ToInt64(pack.literal, 2);
-                    break;
+                    return Convert.ToInt64(pack.literal, 2);
                 case "101":
                     return work[0] > work[1] ? 1 : 0;
                 case "110":
