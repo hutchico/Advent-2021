@@ -30,7 +30,7 @@ namespace Day17 {
 
             //determine Y range:
             min_y = yrange.Item1 - 1; //sanity check: y velocity < max range will overshoot target immediately
-            max_y = yrange.Item2 * -1 * 10; //educated guess based on original numbers, can adjust if necessary
+            max_y = yrange.Item2 * -10; //educated guess based on original numbers, can adjust if necessary
             (int, int) y_window = find(min_y, max_y, yrange, 'y');
 
             //we have a range of values for X and Y which will land it in the window in question
@@ -98,16 +98,13 @@ namespace Day17 {
             int xpos = 0;
             int ypos = 0;
             int yprev;
-            int height = 0;
             while(true) {
-                if(ypos > height)
-                    height = ypos;
                 yprev = ypos;
                 full_step(ref xpos, ref ypos, ref x, ref y);
                 if(ypos < yprev)
                     break;
             }
-            return height;
+            return yprev;
         }
         static bool run(int x, int y, (int, int) targetX, (int, int) targetY) {
             int xpos = 0;
