@@ -27,6 +27,20 @@ namespace Day21 {
 
             
         }
+
+        static (int,int) quantum(int s1, int s2, int p1, int p2, int turn, int roll) {
+            if(memo.ContainsKey(Func<s1,s2,p1,p2,turn,roll>))
+                return memo[Func<s1, s2, p1, p2, turn, roll>]
+
+        }
+
+        public static Dictionary<Func<int, int, int, int, int, int>, (int, int)> memo = new Dictionary<Func<int, int, int, int, int, int>, (int, int)>();
+        public static Func<s1,s2,p1,p2,turn,roll,f> Memoize<s1, s2, p1, p2, turn, roll, f>(this Func<s1, s2, p1, p2, turn, roll,f>,(int,int) n ) {
+            if(memo.ContainsKey)
+                return (a,b,c,d,e,g) => memo.TryGetValue(Func<a,b,c,d,e,g>,n);
+        }
+
+        
     }
 
     class Board {
