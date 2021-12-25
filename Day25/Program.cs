@@ -8,24 +8,20 @@ namespace Day25 {
         static void Main() {
             char[,] board;
             List<List<char>> herd_raw = new List<List<char>>();
+            int steps = 0;
             using(StreamReader file = new StreamReader("input.txt")){
                 while(!file.EndOfStream){
                     List<char> line = new List<char>(file.ReadLine());
                     herd_raw.Add(line);
                 }
             }
-
             board = new char[herd_raw.Count,herd_raw[0].Count];
             for(int i = 0; i < board.GetLength(1); i++) {
                 for(int j = 0; j < board.GetLength(0); j++) {
                     board[j, i] = herd_raw[j][i];
                 }
             }
-            //print(board);
-            Console.WriteLine("hold");
-            int steps = 0;
             while(true) { //step
-                //print(board);
                 int moved = 0;
                 steps++;
                 moved += move_east(ref board);
@@ -38,13 +34,12 @@ namespace Day25 {
 
         static int move_east(ref char[,] board){
             bool moved = false;
-            bool occupied;
             for(int i = 0; i < board.GetLength(0); i++) { //y direction
-                occupied = board[i, 0] == '.' ? false : true; //measure whether the space is occupied at start of inner loop
+                bool occupied = board[i, 0] == '.' ? false : true; //measure whether the space is occupied at start of inner loop
                 for(int j = 0; j < board.GetLength(1); j++) { //x direction
                     int mod = (j + 1) % board.GetLength(1);
                     if(board[i,j] == '>' && board[i, mod] == '.'){
-                        if(j == board.GetLength(1) - 1 && occupied)
+                        if(j == board.GetLength(1) - 1 && occupied) //ignore if trying to cross over to 0
                             continue;
                         board[i, mod] = board[i, j];
                         board[i, j] = '.';
@@ -57,14 +52,14 @@ namespace Day25 {
         }
         static int move_south(ref char[,] board) {
             bool moved = false;
-            bool occupied;
             for(int i = 0; i < board.GetLength(1); i++) { //x direction
-                occupied = board[0, i] == '.' ? false : true;
+                bool occupied = board[0, i] == '.' ? false : true;
                 for(int j = 0; j < board.GetLength(0); j++) { //y direction
-                    if(board[j, i] == 'v' && board[(j + 1) % board.GetLength(0),i] == '.') {
+                    int mod = (j + 1) % board.GetLength(0);
+                    if(board[j, i] == 'v' && board[mod,i] == '.') {
                         if(j == board.GetLength(0) - 1 && occupied)
                             continue;
-                        board[(j + 1) % board.GetLength(0), i] = board[j, i];
+                        board[mod, i] = board[j, i];
                         board[j, i] = '.';
                         moved = true;
                         j++;
