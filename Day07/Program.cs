@@ -6,7 +6,7 @@ namespace Day07 {
     class Program {
         static void Main() {
             List<int> crabs = new List<int>();
-            double fuel = 0;
+            int fuel = 0;
             int median;
             int avg = 0;
             using(StreamReader file = new StreamReader("input.txt")) {
@@ -18,7 +18,7 @@ namespace Day07 {
             //theory: minimum distance is the median value of the array?
             median = crabs[crabs.Count / 2];
             for(int i = 0; i < crabs.Count; i++)
-                fuel += Math.Sqrt(Math.Pow(crabs[i] - median,2)); //account for negative values
+                fuel += Math.Abs(crabs[i] - median);
             Console.WriteLine("Fuel needed: " + fuel);
 
             //part 2:
@@ -33,7 +33,7 @@ namespace Day07 {
         }
 
         static int compute_fuel(int start,int end) {
-            double distance = Math.Sqrt(Math.Pow(start - end,2));
+            int distance = Math.Abs(start - end);
             int total = 0;
             for(int i = 0; i < distance; i++) 
                 total += i + 1;
